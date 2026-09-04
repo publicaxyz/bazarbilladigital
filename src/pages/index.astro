@@ -33,7 +33,7 @@ import whatsappIcon from "../assets/whatsapp.png";
 const waGeneral = waUrl("Hola! Vengo de su página web y me interesa activar una cuenta de streaming. ¿Me pueden dar más información?");
 
 const plans = [
-  { id: "hbomax", name: "HBO Max", tag: "Liga Premier en vivo", price: "3.00", initial: "H", iconBg: "linear-gradient(135deg,#7c3aed,#a855f7)", badge: "Oferta", badgeBg: "rgba(168,85,247,0.16)", badgeColor: "#c084fc", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
+  { id: "hbomax", name: "HBO Max", image: "/hbo-foto.png", tag: "Liga Premier en vivo", price: "3.00", initial: "H", iconBg: "linear-gradient(135deg,#7c3aed,#a855f7)", badge: "Oferta", badgeBg: "rgba(168,85,247,0.16)", badgeColor: "#c084fc", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
   { id: "primevideo", name: "Prime Video", tag: "NBA en vivo", price: "4.00", initial: "P", iconBg: "linear-gradient(135deg,#0ea5e9,#60a5fa)", badge: "", badgeBg: "", badgeColor: "", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
   { id: "disney", name: "Disney Premium", tag: "ESPN en vivo", price: "5.00", initial: "D", iconBg: "linear-gradient(135deg,#1d4ed8,#38bdf8)", badge: "Popular", badgeBg: "rgba(255,45,120,0.16)", badgeColor: "#ff6fa3", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
   { id: "netflix", name: "Netflix", tag: "Eventos en vivo", price: "5.00", initial: "N", iconBg: "linear-gradient(135deg,#dc2626,#ff2d78)", badge: "Más vendido", badgeBg: "rgba(34,229,138,0.16)", badgeColor: "#22e58a", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
@@ -174,13 +174,14 @@ const rotatorLines = [
             {plan.badge && (
               <span class="cat-badge" style={`background:${plan.badgeBg};color:${plan.badgeColor}`}>{plan.badge}</span>
             )}
-            <div class="cat-card-top">
-              <div class="cat-icon" style={`background:${plan.iconBg}`}>{plan.initial}</div>
-              <div>
-                <strong class="cat-name">{plan.name}</strong>
-                <span class="cat-tag">{plan.tag}</span>
-              </div>
-            </div>
+<div class="cat-card-top">
+        <div class="cat-icon" style={`background:${plan.iconBg}`}>{plan.initial}</div>
+        <div>
+          <strong class="cat-name">{plan.name}</strong>
+          <span class="cat-tag">{plan.tag}</span>
+        </div>
+        {plan.image && <img src={plan.image} alt={plan.name} style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; margin-left: auto;" />}
+      </div>
             <ul class="cat-features">
               {plan.features.map((f) => (
                 <li>
