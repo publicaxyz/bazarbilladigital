@@ -1,0 +1,172 @@
+---
+import {
+  SITE_URL,
+  SITE_NAME,
+  COLOR_ACCENT,
+  COLOR_ACCENT2,
+  COLOR_BLUE,
+  COLOR_GREEN,
+} from "../data/config";
+import SpeedInsights from "@vercel/speed-insights/astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = `Cuentas Streaming — Netflix, Spotify, Disney+ y más | ${SITE_NAME}`,
+  description = "Compra cuentas de streaming verificadas al mejor precio. Netflix, Spotify, Disney+, Max y más. Entrega inmediata en minutos, garantía incluida. +2430 clientes activos.",
+} = Astro.props;
+
+const siteUrl = SITE_URL;
+const ogImage = `${siteUrl}/og-image.webp`;
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Base -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO primario -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f0245f" />
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content={SITE_NAME} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={siteUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href={`${base}favicon.png`} />
+    <link rel="apple-touch-icon" href={`${base}favicon.png`} />
+    <link rel="manifest" href={`${base}site.webmanifest`} crossorigin="use-credentials" />
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data (Schema.org) -->
+    <Fragment set:html={`<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "${SITE_NAME}",
+      "description": "Venta de cuentas de streaming verificadas. Netflix, Spotify, Disney+, Max y más. Entrega inmediata con garantía.",
+      "url": "${SITE_URL}",
+      "logo": "${SITE_URL}/favicon.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "availableLanguage": "Spanish",
+        "contactOption": "TollFree"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "offerCount": "8"
+      }
+    }
+    <\/script>`} />
+
+    <Fragment set:html={`<style>
+      :root {
+        --accent:  ${COLOR_ACCENT};
+        --accent2: ${COLOR_ACCENT2};
+        --blue:    ${COLOR_BLUE};
+        --green:   ${COLOR_GREEN};
+      }
+      [data-theme="dark"] {
+        --accent:  ${COLOR_ACCENT};
+        --accent2: ${COLOR_ACCENT2};
+        --blue:    ${COLOR_BLUE};
+        --green:   ${COLOR_GREEN};
+      }
+    <\/style>`} />
+
+    <script is:inline>
+      document.documentElement.setAttribute("data-theme", "dark");
+    </script>
+  </head>
+  <body>
+    <slot />
+    <SpeedInsights />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg:        #f5f7ff;
+    --bg-card:   #ffffff;
+    --bg-logo:   #0d0d12;
+    --bg-nav:    rgba(245, 247, 255, 0.88);
+    --text:      #0f1117;
+    --text-sub:  #6b7280;
+    --border:    #e4e7f0;
+    /* No definir --accent/--accent2/--blue/--green aquí: vienen del .env
+       y este bloque se inyecta después, así que los pisaría. */
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+    --shadow:    0 4px 20px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.14);
+    --radius:    16px;
+    --t:         0.22s ease;
+  }
+
+  [data-theme="dark"] {
+    --bg:        #080b14;
+    --bg-card:   #0e1120;
+    --bg-logo:   #000000;
+    --bg-nav:    rgba(8, 11, 20, 0.9);
+    --text:      #f0f3ff;
+    --text-sub:  #7d8ba3;
+    --border:    #1a2238;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.4);
+    --shadow:    0 4px 20px rgba(0,0,0,0.5);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.7);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background var(--t), color var(--t);
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+
+  ::selection {
+    background: var(--accent);
+    color: #fff;
+  }
+</style>

@@ -1,0 +1,12 @@
+{
+  "name": "Cuentas de Streaming Verificadas",
+  "short_name": "Streaming",
+  "description": "Cuentas de streaming verificadas al mejor precio. Netflix, Spotify, Disney+, Max y más.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080b14",
+  "theme_color": "#f0245f",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
