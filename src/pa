@@ -1264,4 +1264,11 @@ const rotatorLines = [
   .btn-cart-send[aria-disabled="true"] { pointer-events: none; opacity: 0.5; }
 
   @media (max-width: 480px) { .cart-fab { right: 1rem; bottom: 1rem; } }
+
+/* Pega esto dentro del <style> al final de src/pages/index.astro */
+.strip {
+  margin-top: -3.5rem; /* Sube la franja negra para acercarla al banner de arriba */
+  position: relative;
+  z-index: 10;
+}
 </style>
