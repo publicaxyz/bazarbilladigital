@@ -32,22 +32,28 @@ import whatsappIcon from "../assets/whatsapp.png";
 
 const waGeneral = waUrl("Hola! Vengo de su página web y me interesa activar una cuenta de streaming. ¿Me pueden dar más información?");
 
-const plans = [
+// ... (tus imports y configuraciones previas se mantienen igual)
+
+---
+// ... (tus imports y configuraciones previas se mantienen igual)
+
+// Categoría 1: Streaming Principal
+const streamingPlans = [
   { id: "hbomax", name: "HBO Max", image: "/hbo-foto.png", tag: "Liga Premier en vivo", price: "3.00", initial: "H", iconBg: "linear-gradient(135deg,#7c3aed,#a855f7)", badge: "Oferta", badgeBg: "rgba(168,85,247,0.16)", badgeColor: "#c084fc", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
   { id: "primevideo", name: "Prime Video", tag: "NBA en vivo", price: "4.00", initial: "P", iconBg: "linear-gradient(135deg,#0ea5e9,#60a5fa)", badge: "", badgeBg: "", badgeColor: "", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
   { id: "disney", name: "Disney Premium", tag: "ESPN en vivo", price: "5.00", initial: "D", iconBg: "linear-gradient(135deg,#1d4ed8,#38bdf8)", badge: "Popular", badgeBg: "rgba(255,45,120,0.16)", badgeColor: "#ff6fa3", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
   { id: "netflix", name: "Netflix", tag: "Eventos en vivo", price: "5.00", initial: "N", iconBg: "linear-gradient(135deg,#dc2626,#ff2d78)", badge: "Más vendido", badgeBg: "rgba(34,229,138,0.16)", badgeColor: "#22e58a", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
   { id: "paramount", name: "Paramount+", tag: "UFC en vivo", price: "3.00", initial: "P", iconBg: "linear-gradient(135deg,#1e3a8a,#3b82f6)", badge: "", badgeBg: "", badgeColor: "", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
-  { id: "youtube", name: "YouTube Premium", tag: "Incluye YT Music", price: "8.00", initial: "Y", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Descuento", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Servicio renovable", "Incluye YT Music", "1 mes de garantía"] },
-  // aqui añades tus productos nuevos si te das cuenta tienen un id nombre tag precio inicial el badged que son oferta popiular descuento etc etc
-  
-
-
-{ id: "prueba", name: "Producto Prueba", tag: "TAG PRUEBA", price: "80.00", initial: "P", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Oferta", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Prueba 1", "Prueba 2", "Prueba 3"] },
-
-
-
 ];
+
+// Categoría 2: Planes Especiales / Multimedia / Pruebas
+const specialPlans = [
+  { id: "youtube", name: "YouTube Premium", tag: "Incluye YT Music", price: "8.00", initial: "Y", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Descuento", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Servicio renovable", "Incluye YT Music", "1 mes de garantía"] },
+  { id: "prueba", name: "Producto Prueba", tag: "TAG PRUEBA", price: "80.00", initial: "P", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Oferta", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Prueba 1", "Prueba 2", "Prueba 3"] },
+];
+
+
+
 
 // Tasa VES: si FIXED_VES_RATE_ENABLED es true, se usa FIXED_VES_RATE como
 // factor multiplicativo fijo en vez de consultar la tasa de Binance.
@@ -102,13 +108,14 @@ const rotatorLines = [
       </div>
     </section>
 
-   <!-- Catálogo -->
+
+
+<!-- Catálogo -->
     <section class="section" id="catalogo">
       <div class="section-head reveal">
         <span class="eyebrow">Catálogo</span>
         <h2 class="display">Elige tu <span class="grad-text">plataforma</span></h2>
         <p>Acceso inmediato, verificado y con garantía. Sin contratos, sin complicaciones.</p>
-
 
         {showCurrencyToggle && (
           <div class="currency-toggle" id="currencyToggle" role="group" aria-label="Elegir moneda">
@@ -136,48 +143,99 @@ const rotatorLines = [
         )}
       </div>
 
-      <div class="cat-grid">
-        {plans.map((plan, i) => (
-          <div class="cat-card reveal" style={`animation-delay:${i * 70}ms`} data-plan-id={plan.id} data-plan-name={plan.name} data-plan-price={plan.price}>
-            {plan.badge && (
-              <span class="cat-badge" style={`background:${plan.badgeBg};color:${plan.badgeColor}`}>{plan.badge}</span>
-            )}
-<div class="cat-card-top">
-        <div class="cat-icon" style={`background:${plan.iconBg}`}>{plan.initial}</div>
-        <div>
-          <strong class="cat-name">{plan.name}</strong>
-          <span class="cat-tag">{plan.tag}</span>
-        </div>
-        {plan.image && <img src={plan.image} alt={plan.name} style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; margin-left: auto;" />}
-      </div>
-            <ul class="cat-features">
-              {plan.features.map((f) => (
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <div class="cat-foot">
-              <div class="cat-price"><span class="cat-price-num" data-price-usd={plan.price}>${plan.price}</span><span class="cat-price-period">/ mes</span></div>
-              <button type="button" class="cat-btn cat-btn-add" data-add-to-cart>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                <span class="cat-btn-label">Agregar</span>
-              </button>
-              <div class="cat-stepper" data-stepper hidden>
-                <button type="button" class="cat-stepper-btn" data-qty-decrease aria-label={`Quitar una unidad de ${plan.name}`}>
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <!-- GRUPO 1: Streaming Principal -->
+      <div class="category-group">
+        <h3 class="display category-subheading">🎬 Plataformas de Streaming</h3>
+        <div class="cat-grid">
+          {streamingPlans.map((plan, i) => (
+            <div class="cat-card reveal" style={`animation-delay:${i * 70}ms`} data-plan-id={plan.id} data-plan-name={plan.name} data-plan-price={plan.price}>
+              {plan.badge && (
+                <span class="cat-badge" style={`background:${plan.badgeBg};color:${plan.badgeColor}`}>{plan.badge}</span>
+              )}
+              <div class="cat-card-top">
+                <div class="cat-icon" style={`background:${plan.iconBg}`}>{plan.initial}</div>
+                <div>
+                  <strong class="cat-name">{plan.name}</strong>
+                  <span class="cat-tag">{plan.tag}</span>
+                </div>
+                {plan.image && <img src={plan.image} alt={plan.name} style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; margin-left: auto;" />}
+              </div>
+              <ul class="cat-features">
+                {plan.features.map((f) => (
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <div class="cat-foot">
+                <div class="cat-price"><span class="cat-price-num" data-price-usd={plan.price}>${plan.price}</span><span class="cat-price-period">/ mes</span></div>
+                <button type="button" class="cat-btn cat-btn-add" data-add-to-cart>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span class="cat-btn-label">Agregar</span>
                 </button>
-                <span class="cat-stepper-qty" data-qty>1</span>
-                <button type="button" class="cat-stepper-btn" data-qty-increase aria-label={`Agregar una unidad de ${plan.name}`}>
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                </button>
+                <div class="cat-stepper" data-stepper hidden>
+                  <button type="button" class="cat-stepper-btn" data-qty-decrease aria-label={`Quitar una unidad de ${plan.name}`}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <span class="cat-stepper-qty" data-qty>1</span>
+                  <button type="button" class="cat-stepper-btn" data-qty-increase aria-label={`Agregar una unidad de ${plan.name}`}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+      </div>
+
+      <!-- GRUPO 2: Planes Especiales o Multimedia -->
+      <div class="category-group" style="margin-top: 4rem;">
+        <h3 class="display category-subheading">⭐ Servicios Multimedia y Otros</h3>
+        <div class="cat-grid">
+          {specialPlans.map((plan, i) => (
+            <div class="cat-card reveal" style={`animation-delay:${i * 70}ms`} data-plan-id={plan.id} data-plan-name={plan.name} data-plan-price={plan.price}>
+              {plan.badge && (
+                <span class="cat-badge" style={`background:${plan.badgeBg};color:${plan.badgeColor}`}>{plan.badge}</span>
+              )}
+              <div class="cat-card-top">
+                <div class="cat-icon" style={`background:${plan.iconBg}`}>{plan.initial}</div>
+                <div>
+                  <strong class="cat-name">{plan.name}</strong>
+                  <span class="cat-tag">{plan.tag}</span>
+                </div>
+                {plan.image && <img src={plan.image} alt={plan.name} style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; margin-left: auto;" />}
+              </div>
+              <ul class="cat-features">
+                {plan.features.map((f) => (
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <div class="cat-foot">
+                <div class="cat-price"><span class="cat-price-num" data-price-usd={plan.price}>${plan.price}</span><span class="cat-price-period">/ mes</span></div>
+                <button type="button" class="cat-btn cat-btn-add" data-add-to-cart>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span class="cat-btn-label">Agregar</span>
+                </button>
+                <div class="cat-stepper" data-stepper hidden>
+                  <button type="button" class="cat-stepper-btn" data-qty-decrease aria-label={`Quitar una unidad de ${plan.name}`}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                  <span class="cat-stepper-qty" data-qty>1</span>
+                  <button type="button" class="cat-stepper-btn" data-qty-increase aria-label={`Agregar una unidad de ${plan.name}`}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
+
 
    
     <!-- Hero -->
