@@ -13,28 +13,21 @@ import {
   ALLOW_USD_TOGGLE,
   CURRENCY_DEFS,
 } from "../data/config";
+import { CREDIT_NAME, CREDIT_URL, CREDIT_TEXT } from "../data/credits";
+import whatsappIcon from "../assets/whatsapp.png";
 
 // Solo códigos con definición conocida en CURRENCY_DEFS, sin duplicados.
 const currencyOptions = [...new Set(ACTIVE_CURRENCIES)].filter((code) => CURRENCY_DEFS[code]);
-// El toggle se muestra si hay alguna moneda activa Y hay algo entre qué elegir:
-// USD como alternativa, o 2+ monedas activas entre sí.
 const showCurrencyToggle = MULTICURRENCY_ENABLED && currencyOptions.length > 0 && (ALLOW_USD_TOGGLE || currencyOptions.length > 1);
 const initialCurrency = MULTICURRENCY_ENABLED && currencyOptions.includes(DEFAULT_CURRENCY) ? DEFAULT_CURRENCY : "USD";
 
-// Config que necesita el script del cliente: por cada moneda activa, su API y clave de caché.
 const currencyClientConfig = currencyOptions.map((code) => ({
   code,
   label: CURRENCY_DEFS[code].label,
   apiUrl: CURRENCY_DEFS[code].apiUrl,
 }));
-import { CREDIT_NAME, CREDIT_URL, CREDIT_TEXT } from "../data/credits";
-import whatsappIcon from "../assets/whatsapp.png";
 
 const waGeneral = waUrl("Hola! Vengo de su página web y me interesa activar una cuenta de streaming. ¿Me pueden dar más información?");
-
-// ... (tus imports y configuraciones previas se mantienen igual)
-
-// ... (tus imports y configuraciones previas se mantienen igual)
 
 // Categoría 1: Streaming Principal
 const streamingPlans = [
@@ -51,11 +44,6 @@ const specialPlans = [
   { id: "prueba", name: "Producto Prueba", tag: "TAG PRUEBA", price: "80.00", initial: "P", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Oferta", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Prueba 1", "Prueba 2", "Prueba 3"] },
 ];
 
-
-
-
-// Tasa VES: si FIXED_VES_RATE_ENABLED es true, se usa FIXED_VES_RATE como
-// factor multiplicativo fijo en vez de consultar la tasa de Binance.
 const FIXED_VES_RATE_ENABLED = true;
 const FIXED_VES_RATE = 40;
 
@@ -73,28 +61,24 @@ const rotatorLines = [
   "Más de 2.430 clientes ya disfrutan sus cuentas.",
   "Escríbenos y lo activamos en el momento.",
 ];
+---
 
 <Layout>
   <Navbar />
 
   <div class="page">
 
-<!-- Logos strip Estas son las marquesinas horizontales flotantes que se volveran links  -->
+    <!-- Logos strip -->
     <section class="strip reveal">
       <div class="strip-track">
-        <!-- Grupo 1: Streaming (Apuntan arriba a #catalogo) -->
         <a href="#catalogo">NETFLIX</a>
         <a href="#catalogo">HBO MAX</a>
         <a href="#catalogo">DISNEY+</a>
         <a href="#catalogo">PRIME VIDEO</a>
         <a href="#catalogo">PARAMOUNT+</a>
         <a href="#catalogo">VIX</a>
-        
-        <!-- Grupo 2: Productos Físicos (Apuntan abajo a #cta-final) -->
         <a href="#cta-final">TV BOX</a>
         <a href="#cta-final">PARLANTES</a>
-
-        <!-- Repetición para la animación infinita de la marquesina -->
         <a href="#catalogo">NETFLIX</a>
         <a href="#catalogo">HBO MAX</a>
         <a href="#catalogo">DISNEY+</a>
@@ -106,9 +90,7 @@ const rotatorLines = [
       </div>
     </section>
 
-
-
-<!-- Catálogo -->
+    <!-- Catálogo -->
     <section class="section" id="catalogo">
       <div class="section-head reveal">
         <span class="eyebrow">Catálogo</span>
@@ -233,8 +215,6 @@ const rotatorLines = [
         </div>
       </div>
     </section>
-
-
    
     <!-- Hero -->
     <section class="hero">
@@ -286,12 +266,10 @@ const rotatorLines = [
         </div>
       </div>
 
-<!--este es el scroll que se mueve solito botoncito animado -->
       <div class="scroll-cue" aria-hidden="true">
         <span></span>
       </div>
     </section>
-
 
     <!-- Garantías -->
     <section class="section" id="garantias">
@@ -299,9 +277,6 @@ const rotatorLines = [
         <span class="eyebrow">Por qué confiar</span>
         <h2 class="display">Cero riesgo, <span class="grad-text">todo beneficio</span></h2>
       </div>
-
-
-
 
       <div class="feat-grid">
         <div class="feat-card reveal">
@@ -430,7 +405,6 @@ const rotatorLines = [
 </Layout>
 
 <script define:vars={{ rotatorLines, WA_NUMBER, showCurrencyToggle, currencyClientConfig, initialCurrency, allowUsdToggle: ALLOW_USD_TOGGLE, fixedVesRateEnabled: FIXED_VES_RATE_ENABLED, fixedVesRate: FIXED_VES_RATE }}>
-  // FAQ acordeón
   document.querySelectorAll(".faq-q").forEach((btn) => {
     btn.addEventListener("click", () => {
       const item = btn.closest(".faq-item");
@@ -446,7 +420,6 @@ const rotatorLines = [
     });
   });
 
-  // CTA — texto rotativo
   const rotatorEl = document.getElementById("ctaRotator");
   if (rotatorEl) {
     let idx = 0;
@@ -460,7 +433,6 @@ const rotatorLines = [
     }, 3600);
   }
 
-  // Animación de entrada al hacer scroll
   const revealObserver = new IntersectionObserver(
     (entries) => entries.forEach((e) => {
       if (e.isIntersecting) {
@@ -472,7 +444,6 @@ const rotatorLines = [
   );
   document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-  // Botones con efecto magnético
   document.querySelectorAll(".btn-magnetic").forEach((btn) => {
     btn.addEventListener("mousemove", (e) => {
       const rect = btn.getBoundingClientRect();
@@ -485,16 +456,13 @@ const rotatorLines = [
     });
   });
 
-  // ── Multimoneda ──
-  // Formateadores por moneda — deben reflejar CURRENCY_DEFS de src/data/config.ts,
-  // ya que las funciones no pueden viajar por define:vars.
   const CURRENCY_FORMATTERS = {
     VES: (amount) => `Bs ${amount.toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
     COP: (amount) => `$${amount.toLocaleString("es-CO", { minimumFractionDigits: 0, maximumFractionDigits: 0 })} COP`,
   };
 
   const CURRENCY_KEY = "lpc_currency";
-  const RATE_CACHE_MS = 5 * 60 * 1000; // refrescar cada tasa cada 5 min como máximo
+  const RATE_CACHE_MS = 5 * 60 * 1000;
 
   function rateCacheKey(code) {
     return `lpc_rate_${code}`;
@@ -514,9 +482,7 @@ const rotatorLines = [
   function saveStoredCurrency(value) {
     try {
       localStorage.setItem(CURRENCY_KEY, value);
-    } catch {
-      // localStorage no disponible — la preferencia solo dura la sesión actual.
-    }
+    } catch {}
   }
 
   function loadCachedRate(code) {
@@ -534,13 +500,11 @@ const rotatorLines = [
   function saveCachedRate(code, rate) {
     try {
       localStorage.setItem(rateCacheKey(code), JSON.stringify({ rate, fetchedAt: Date.now() }));
-    } catch {
-      // localStorage no disponible — se volverá a pedir la tasa en la próxima carga.
-    }
+    } catch {}
   }
 
   let currency = loadStoredCurrency();
-  const rates = {}; // code -> tasa (unidades de esa moneda por 1 USD), o null si no cargó
+  const rates = {};
 
   function parseRate(code, json) {
     if (code === "VES") {
@@ -575,7 +539,6 @@ const rotatorLines = [
       saveCachedRate(code, rate);
       return rates[code];
     } catch {
-      // Sin conexión a la API: usamos la última tasa cacheada si existe, aunque esté vieja.
       rates[code] = cached ? cached.rate : null;
       return rates[code];
     }
@@ -589,7 +552,7 @@ const rotatorLines = [
     if (currency !== "USD" && CURRENCY_FORMATTERS[currency]) {
       const rate = rates[currency];
       if (rate != null) return CURRENCY_FORMATTERS[currency](usdAmount * rate);
-      return `$${usdAmount.toFixed(2)}`; // fallback si la tasa no cargó todavía
+      return `$${usdAmount.toFixed(2)}`;
     }
     return `$${usdAmount.toFixed(2)}`;
   }
@@ -633,7 +596,6 @@ const rotatorLines = [
     });
   }
 
-  // ── Carrito de compra ──
   const CART_KEY = "lpc_cart";
 
   function loadCart() {
@@ -648,10 +610,7 @@ const rotatorLines = [
   function saveCart(cart) {
     try {
       localStorage.setItem(CART_KEY, JSON.stringify(cart));
-    } catch {
-      // localStorage no disponible (modo privado, cuota llena, etc.) — el carrito
-      // sigue funcionando en memoria durante la sesión actual.
-    }
+    } catch {}
   }
 
   let cart = loadCart();
@@ -801,9 +760,6 @@ const rotatorLines = [
 
   cartWaBtn.addEventListener("click", (e) => {
     if (cartWaBtn.getAttribute("aria-disabled") === "true") return;
-    // Evitar que la navegación use el href de "#" que renderCart() deja tras
-    // vaciar el carrito: abrimos la URL de WhatsApp nosotros mismos y luego
-    // limpiamos el estado, en vez de dejar que el navegador siga el href.
     e.preventDefault();
     window.open(cartWaBtn.href, "_blank", "noopener");
     cart = [];
@@ -850,10 +806,6 @@ const rotatorLines = [
   renderCart();
   syncCardButtons();
 
-  // Pintar precios en USD de inmediato y buscar todas las tasas activas en
-  // paralelo (así cualquier toggle es instantáneo después). Se busca la tasa
-  // aunque el toggle esté oculto: puede haber una sola moneda fija (VES sin
-  // alternativa a USD) que igual necesita su tasa para mostrarse.
   renderAllPrices();
   if (currencyClientConfig.length > 0) {
     fetchAllRates().then(() => {
@@ -870,7 +822,6 @@ const rotatorLines = [
 
   .page { position: relative; overflow-x: clip; }
 
-  /* Reveal on scroll */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -902,7 +853,6 @@ const rotatorLines = [
     100% { box-shadow: 0 0 0 0 transparent; }
   }
 
-  /* ── Hero ── */
   .hero {
     position: relative;
     padding: 5.5rem 1.5rem 4rem;
@@ -913,7 +863,7 @@ const rotatorLines = [
     isolation: isolate;
   }
 
-.hero-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
   .grid-fade {
     position: absolute; inset: 0;
     background-image:
@@ -1010,14 +960,11 @@ const rotatorLines = [
     animation: floatY 1.6s ease-in-out infinite;
   }
 
-  /* ── Logo strip ── */
   .strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.3rem 0; overflow: hidden; }
   .strip-track { display: flex; gap: 3rem; width: max-content; animation: marquee 26s linear infinite; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .strip-track span { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-sub); opacity: 0.55; white-space: nowrap; }
 
-  // Espacio de arriba y espacio del scroll raton dinamico   en el atributo padding   Sections el paddin estaba en 5 puse a 3.1
-  /* ── Sections ── */
   .section { max-width: 1140px; margin: 0 auto; padding: 3.1rem 1.5rem; }
   .section-head { text-align: center; max-width: 560px; margin: 0 auto 3rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
   .eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
@@ -1041,7 +988,6 @@ const rotatorLines = [
   .currency-toggle-btn:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
   .currency-toggle-btn.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-  /* ── Catalog ── */
   .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
   .cat-card {
     position: relative;
@@ -1085,7 +1031,6 @@ const rotatorLines = [
   @media (max-width: 860px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 540px) { .cat-grid { grid-template-columns: 1fr; } }
 
-  /* ── Features ── */
   .feat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
   .feat-card {
     background: var(--bg-card);
@@ -1109,7 +1054,6 @@ const rotatorLines = [
 
   @media (max-width: 860px) { .feat-grid { grid-template-columns: repeat(2, 1fr); } }
 
-  /* ── FAQ ── */
   .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.65rem; }
   .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color var(--t); }
   .faq-item.open { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
@@ -1126,8 +1070,6 @@ const rotatorLines = [
   .faq-item.open .faq-a { max-height: 300px; }
   .faq-a p { padding: 0 1.4rem 1.2rem; font-size: 0.92rem; color: var(--text-sub); line-height: 1.7; }
 
-
-  /* ── CTA final ── */
   .cta-final {
     position: relative;
     max-width: 1140px;
@@ -1194,7 +1136,6 @@ const rotatorLines = [
     .cta-final-trust { gap: 0.8rem 1.2rem; }
   }
 
-  /* ── Footer ── */
   .footer { position: relative; z-index: 1; text-align: center; padding: 2.5rem 1.5rem 3rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.4rem; }
   .footer-logo { font-size: 1rem; font-weight: 700; color: var(--text); }
   .footer-logo span { color: var(--accent); }
@@ -1206,10 +1147,6 @@ const rotatorLines = [
 </style>
 
 <style is:global>
-  /* Carrito: reglas globales porque el drawer se rellena vía innerHTML desde el
-     script del cliente, y los estilos con scope de Astro no alcanzan a nodos
-     inyectados dinámicamente (no llevan el atributo data-astro-cid-*). */
-
   .cat-btn-add[hidden] { display: none; }
   .cat-btn-add { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; font-family: inherit; }
 
@@ -1319,7 +1256,7 @@ const rotatorLines = [
   .cart-item-actions { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
   .cat-stepper-sm { padding: 0.15rem; }
   .cat-stepper-sm .cat-stepper-btn { width: 24px; height: 24px; }
-  .cat-stepper-sm .cat-stepper-qty { min-width: 1.3rem; font-size: 0.85rem; }
+  .cat-stepper-sm .cat-stepper-qty {min-width: 1.3rem; font-size: 0.85rem; }
   .cart-item-remove {
     width: 30px; height: 30px; flex-shrink: 0;
     display: grid; place-items: center;
@@ -1352,7 +1289,4 @@ const rotatorLines = [
   .btn-cart-send[aria-disabled="true"] { pointer-events: none; opacity: 0.5; }
 
   @media (max-width: 480px) { .cart-fab { right: 1rem; bottom: 1rem; } }
-
-
-
 </style>
