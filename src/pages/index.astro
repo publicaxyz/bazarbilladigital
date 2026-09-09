@@ -40,7 +40,7 @@ const plans = [
   { id: "paramount", name: "Paramount+", tag: "UFC en vivo", price: "3.00", initial: "P", iconBg: "linear-gradient(135deg,#1e3a8a,#3b82f6)", badge: "", badgeBg: "", badgeColor: "", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
   { id: "youtube", name: "YouTube Premium", tag: "Incluye YT Music", price: "8.00", initial: "Y", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Descuento", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Servicio renovable", "Incluye YT Music", "1 mes de garantía"] },
   // aqui añades tus productos nuevos si te das cuenta tienen un id nombre tag precio inicial el badged que son oferta popiular descuento etc etc
-  { id: "prueba", name: "Producto Prueba", tag: "TAG PRUEBA", price: "80.00", initial: "P", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Oferta", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Prueba 1", "Prueba 2", "Prueba 3"] },
+  
 
 ];
 
@@ -103,6 +103,14 @@ const rotatorLines = [
         <span class="eyebrow">Catálogo</span>
         <h2 class="display">Elige tu <span class="grad-text">plataforma</span></h2>
         <p>Acceso inmediato, verificado y con garantía. Sin contratos, sin complicaciones.</p>
+
+
+
+
+{ id: "prueba", name: "Producto Prueba", tag: "TAG PRUEBA", price: "80.00", initial: "P", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Oferta", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Prueba 1", "Prueba 2", "Prueba 3"] },
+
+
+
 
         {showCurrencyToggle && (
           <div class="currency-toggle" id="currencyToggle" role="group" aria-label="Elegir moneda">
@@ -237,6 +245,9 @@ const rotatorLines = [
         <span class="eyebrow">Por qué confiar</span>
         <h2 class="display">Cero riesgo, <span class="grad-text">todo beneficio</span></h2>
       </div>
+
+
+
 
       <div class="feat-grid">
         <div class="feat-card reveal">
@@ -1060,6 +1071,7 @@ const rotatorLines = [
   .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
   .faq-item.open .faq-a { max-height: 300px; }
   .faq-a p { padding: 0 1.4rem 1.2rem; font-size: 0.92rem; color: var(--text-sub); line-height: 1.7; }
+
 
   /* ── CTA final ── */
   .cta-final {
