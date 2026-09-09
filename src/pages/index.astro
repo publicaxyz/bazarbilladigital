@@ -28,6 +28,7 @@ const currencyClientConfig = currencyOptions.map((code) => ({
 }));
 
 const waGeneral = waUrl("Hola! Vengo de su página web y me interesa activar una cuenta de streaming. ¿Me pueden dar más información?");
+const waRecargas = waUrl("Hola! Vengo de su página web y quiero hacer una recarga para juegos / TikTok.");
 
 // Categoría 1: Streaming Principal
 const streamingPlans = [
@@ -38,7 +39,7 @@ const streamingPlans = [
   { id: "paramount", name: "Paramount+", tag: "UFC en vivo", price: "3.00", initial: "P", iconBg: "linear-gradient(135deg,#1e3a8a,#3b82f6)", badge: "", badgeBg: "", badgeColor: "", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
 ];
 
-// Categoría 2: Planes Especiales / Multimedia / Pruebas
+// Categoría 2: Planes Especiales / Multimedia y Productos Físicos
 const specialPlans = [
   { id: "youtube", name: "YouTube Premium", tag: "Incluye YT Music", price: "8.00", initial: "Y", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Descuento", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Servicio renovable", "Incluye YT Music", "1 mes de garantía"] },
   { id: "prueba", name: "Producto Prueba", tag: "TAG PRUEBA", price: "80.00", initial: "P", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Oferta", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Prueba 1", "Prueba 2", "Prueba 3"] },
@@ -90,7 +91,7 @@ const rotatorLines = [
       </div>
     </section>
 
-    <!-- Catálogo -->
+    <!-- Catálogo (Solo Categoría 1: Streaming) -->
     <section class="section" id="catalogo">
       <div class="section-head reveal">
         <span class="eyebrow">Catálogo</span>
@@ -168,10 +169,58 @@ const rotatorLines = [
           ))}
         </div>
       </div>
+    </section>
+   
+    <!-- Hero (Propaganda de Recargas de Juegos y TikTok al medio) -->
+    <section class="hero" id="recargas">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="grid-fade"></div>
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="orb orb-c"></div>
+      </div>
 
-      <!-- GRUPO 2: Planes Especiales o Multimedia -->
-      <div class="category-group" style="margin-top: 4rem;">
-        <h3 class="display category-subheading">⭐ Servicios Multimedia y Otros</h3>
+      <div class="hero-inner">
+        <div class="hero-badge reveal" style="animation-delay:0s">
+          <span class="live-dot"></span>
+          Recargas disponibles al instante
+        </div>
+
+        <h1 class="hero-title display reveal" style="animation-delay:.08s">
+          Recargas para <span class="grad-text">Juegos y TikTok</span>
+        </h1>
+
+        <p class="hero-sub reveal" style="animation-delay:.16s">
+          Recarga diamantes en <strong>Free Fire</strong>, monedas en <strong>Roblox</strong>, saldo para <strong>TikTok</strong> y muchos juegos más de forma rápida y segura.
+        </p>
+
+        <div class="hero-cta-row reveal" style="animation-delay:.24s">
+          <a href={waRecargas} class="btn-primary btn-magnetic" target="_blank" rel="noopener">
+            <span class="btn-primary-glow"></span>
+            <span class="btn-primary-label">
+              <Image src={whatsappIcon} alt="WhatsApp" class="btn-icon" width={20} height={20} loading="eager" fetchpriority="high" />
+              Háblame para recargar directo
+            </span>
+          </a>
+          <div class="hero-cta-hint">
+            <span class="hero-cta-hint-arrow">↳</span> atención inmediata por WhatsApp
+          </div>
+        </div>
+
+        <div class="hero-platforms reveal" style="animation-delay:.4s">
+          <span>Free Fire</span><span>Roblox</span><span>TikTok</span><span>Otros juegos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRUPO 2: Servicios Multimedia y Otros (Movido hacia abajo antes de Garantías) -->
+    <section class="section" id="multimedia-otros">
+      <div class="category-group">
+        <div class="section-head reveal">
+          <span class="eyebrow">Productos y más</span>
+          <h2 class="display">⭐ Servicios Multimedia <span class="grad-text">y Otros</span></h2>
+          <p>Parlantes bluetooth, audífonos, cargadores, TV Box y productos físicos disponibles.</p>
+        </div>
         <div class="cat-grid">
           {specialPlans.map((plan, i) => (
             <div class="cat-card reveal" style={`animation-delay:${i * 70}ms`} data-plan-id={plan.id} data-plan-name={plan.name} data-plan-price={plan.price}>
@@ -213,61 +262,6 @@ const rotatorLines = [
             </div>
           ))}
         </div>
-      </div>
-    </section>
-   
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true">
-        <div class="grid-fade"></div>
-        <div class="orb orb-a"></div>
-        <div class="orb orb-b"></div>
-        <div class="orb orb-c"></div>
-      </div>
-
-      <div class="hero-inner">
-        <div class="hero-badge reveal" style="animation-delay:0s">
-          <span class="live-dot"></span>
-          +2.430 clientes activos ahora mismo
-        </div>
-
-        <h1 class="hero-title display reveal" style="animation-delay:.08s">
-          Tu próxima maratón
-          <span class="grad-text">empieza en 5 minutos</span>
-        </h1>
-
-        <p class="hero-sub reveal" style="animation-delay:.16s">
-          Cuentas de streaming reales, verificadas y con garantía. Netflix, HBO Max, Disney+ y más —
-          activadas al instante, sin contratos ni letra pequeña.
-        </p>
-
-        <div class="hero-cta-row reveal" style="animation-delay:.24s">
-          <a href={waGeneral} class="btn-primary btn-magnetic" target="_blank" rel="noopener">
-            <span class="btn-primary-glow"></span>
-            <span class="btn-primary-label">
-              <Image src={whatsappIcon} alt="WhatsApp" class="btn-icon" width={20} height={20} loading="eager" fetchpriority="high" />
-              Activar mi cuenta ya
-            </span>
-          </a>
-          <div class="hero-cta-hint">
-            <span class="hero-cta-hint-arrow">↳</span> respuesta en menos de 2 min
-          </div>
-        </div>
-
-        <div class="hero-trust reveal" style="animation-delay:.32s">
-          <div class="trust-avatars" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-          </div>
-          <span><strong>4.9/5</strong> · reseñas de clientes reales</span>
-        </div>
-
-        <div class="hero-platforms reveal" style="animation-delay:.4s">
-          <span>Netflix</span><span>HBO Max</span><span>Disney+</span><span>Prime Video</span><span>Paramount+</span><span class="dim">+3 más</span>
-        </div>
-      </div>
-
-      <div class="scroll-cue" aria-hidden="true">
-        <span></span>
       </div>
     </section>
 
@@ -929,35 +923,12 @@ const rotatorLines = [
   .hero-cta-hint { font-size: 0.8rem; color: var(--text-sub); display: flex; align-items: center; gap: 0.35rem; }
   .hero-cta-hint-arrow { color: var(--accent); }
 
-  .hero-trust { display: flex; align-items: center; gap: 0.7rem; font-size: 0.85rem; color: var(--text-sub); margin-top: 0.3rem; }
-  .hero-trust strong { color: var(--text); }
-  .trust-avatars { display: flex; }
-  .trust-avatars span {
-    width: 26px; height: 26px; border-radius: 50%;
-    border: 2px solid var(--bg);
-    margin-left: -8px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-  }
-  .trust-avatars span:first-child { margin-left: 0; }
-  .trust-avatars span:nth-child(2) { background: linear-gradient(135deg, var(--accent2), var(--blue)); }
-  .trust-avatars span:nth-child(3) { background: linear-gradient(135deg, var(--blue), var(--green)); }
-  .trust-avatars span:nth-child(4) { background: linear-gradient(135deg, var(--green), var(--accent)); }
-
   .hero-platforms { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 0.5rem; }
   .hero-platforms span {
     font-size: 0.8rem; font-weight: 600; color: var(--text-sub);
     background: color-mix(in srgb, var(--text) 4%, transparent);
     border: 1px solid var(--border);
     padding: 0.32rem 0.85rem; border-radius: 999px;
-  }
-  .hero-platforms .dim { opacity: 0.6; }
-
-  .scroll-cue { display: flex; justify-content: center; margin-top: 3rem; }
-  .scroll-cue span { width: 22px; height: 36px; border: 2px solid var(--border); border-radius: 12px; position: relative; }
-  .scroll-cue span::before {
-    content: ''; position: absolute; top: 6px; left: 50%; width: 4px; height: 8px;
-    background: var(--text-sub); border-radius: 2px; transform: translateX(-50%);
-    animation: floatY 1.6s ease-in-out infinite;
   }
 
   .strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.3rem 0; overflow: hidden; }
