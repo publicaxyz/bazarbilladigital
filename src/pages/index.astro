@@ -549,9 +549,9 @@ const rotatorLines = [
     if (currency !== "USD" && CURRENCY_FORMATTERS[currency]) {
       const rate = rates[currency];
       if (rate != null) return CURRENCY_FORMATTERS[currency](usdAmount * rate);
-      return `Bs {usdAmount.toFixed(2)}`;
+      return `Bs ${usdAmount.toFixed(2)}`;
     }
-    return `Bs {usdAmount.toFixed(2)}`;
+    return `Bs ${usdAmount.toFixed(2)}`;
   }
 
   const currencyToggle = document.getElementById("currencyToggle");
