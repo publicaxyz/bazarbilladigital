@@ -236,21 +236,33 @@ const rotatorLines = [
                 <span class="cat-badge" style={`background:${plan.badgeBg};color:${plan.badgeColor}`}>{plan.badge}</span>
               )}
 
-{/* Imagen central */}
-    {plan.image && (
-      <div style="margin: 10px 0; text-align: center;">
-        <img src={plan.image} alt={plan.name} style="max-width: 100%; max-height: 90px; width: auto; height: auto; object-fit: contain; border-radius: 6px; display: inline-block;" />
-      </div>
-    )}
 
-    <ul class="cat-features">
-      {plan.features.map((f) => (
-        <li>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          {f}
-        </li>
-      ))}
-    </ul>
+<div class="cat-card-top">
+    <div class="cat-icon" style={`background:${plan.iconBg}`}>{plan.initial}</div>
+    <div>
+      <strong class="cat-name">{plan.name}</strong>
+      <span class="cat-tag">{plan.tag}</span>
+    </div>
+  </div>
+
+  {/* Imagen ubicada ordenadamente debajo de la cabecera y antes de las características */}
+  {plan.image && (
+    <div style="margin: 10px 0; text-align: center;">
+      <img src={plan.image} alt={plan.name} style="max-width: 100%; max-height: 90px; width: auto; height: auto; object-fit: contain; border-radius: 6px; display: inline-block;" />
+    </div>
+  )}
+
+  <ul class="cat-features">
+    {plan.features.map((f) => (
+      <li>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        {f}
+      </li>
+    ))}
+  </ul>
+
+
+
 
 <ul class="cat-features">
                 {plan.features.map((f) => (
