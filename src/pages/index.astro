@@ -19,7 +19,7 @@ import whatsappIcon from "../assets/whatsapp.png";
 // Solo códigos con definición conocida en CURRENCY_DEFS, sin duplicados.
 const currencyOptions = [...new Set(ACTIVE_CURRENCIES)].filter((code) => CURRENCY_DEFS[code]);
 const showCurrencyToggle = MULTICURRENCY_ENABLED && currencyOptions.length > 0 && (ALLOW_USD_TOGGLE || currencyOptions.length > 1);
-const initialCurrency = MULTICURRENCY_ENABLED && currencyOptions.includes(DEFAULT_CURRENCY) ? DEFAULT_CURRENCY : "USD";
+const initialCurrency = MULTICURRENCY_ENABLED && currencyOptions.includes(DEFAULT_CURRENCY) ? DEFAULT_CURRENCY : "VES";
 
 const currencyClientConfig = currencyOptions.map((code) => ({
   code,
