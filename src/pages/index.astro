@@ -450,6 +450,9 @@ const rotatorLines = [
     });
   });
 
+  // ── Multimoneda ──
+  // Formateadores por moneda — deben reflejar CURRENCY_DEFS de src/data/config.ts,
+  // ya que las funciones no pueden viajar por define:vars.
   const CURRENCY_FORMATTERS = {
     VES: (amount) => `Bs ${amount.toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
     COP: (amount) => `$${amount.toLocaleString("es-CO", { minimumFractionDigits: 0, maximumFractionDigits: 0 })} COP`,
