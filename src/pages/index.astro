@@ -245,11 +245,10 @@ const rotatorLines = [
 
 {/* Esto solo se dibuja si el producto tiene la propiedad image definida */}
 {plan.image && (
-  <div style="margin-top: 12px; width: 100%;">
-    <img src={plan.image} alt={plan.name} style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; display: block;" />
+  <div style="margin-top: 10px; text-align: center;">
+    <img src={plan.image} alt={plan.name} style="max-width: 100%; max-height: 90px; width: auto; height: auto; object-fit: contain; border-radius: 6px; display: inline-block;" />
   </div>
 )}
-
 <ul class="cat-features">
                 {plan.features.map((f) => (
                   <li>
