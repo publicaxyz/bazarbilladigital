@@ -236,10 +236,10 @@ const rotatorLines = [
                 <span class="cat-badge" style={`background:${plan.badgeBg};color:${plan.badgeColor}`}>{plan.badge}</span>
               )}
 
-{/* Imagen flotante a la derecha sin alterar la lista de características */}
+{/* Imagen central */}
     {plan.image && (
-      <div style="position: absolute; right: 20px; top: 90px; width: 110px; text-align: center;">
-        <img src={plan.image} alt={plan.name} style="width: 100%; max-height: 95px; object-fit: contain; border-radius: 6px; display: block;" />
+      <div style="margin: 10px 0; text-align: center;">
+        <img src={plan.image} alt={plan.name} style="max-width: 100%; max-height: 90px; width: auto; height: auto; object-fit: contain; border-radius: 6px; display: inline-block;" />
       </div>
     )}
 
@@ -251,7 +251,6 @@ const rotatorLines = [
         </li>
       ))}
     </ul>
-
 
 <ul class="cat-features">
                 {plan.features.map((f) => (
