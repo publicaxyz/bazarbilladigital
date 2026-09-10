@@ -245,10 +245,7 @@ const rotatorLines = [
     </div>
   </div>
 
-  {/* Contenedor en fila: características a la izquierda e imagen normal a la derecha */}
   <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px;">
-    
-    {/* Lista de características (aparece en todas las tarjetas ordenadamente) */}
     <ul class="cat-features" style="flex: 1; margin: 0; padding: 0; list-style: none;">
       {plan.features.map((f) => (
         <li style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
@@ -258,13 +255,11 @@ const rotatorLines = [
       ))}
     </ul>
 
-    {/* Imagen normal (sin opacidad) alineada a la derecha, solo si el plan la tiene */}
     {plan.image && (
       <div style="width: 100px; flex-shrink: 0; text-align: center;">
         <img src={plan.image} alt={plan.name} style="width: 100%; max-height: 90px; object-fit: contain; border-radius: 6px; display: block;" />
       </div>
     )}
-
   </div>
 
 
