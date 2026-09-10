@@ -245,25 +245,27 @@ const rotatorLines = [
     </div>
   </div>
 
-  {/* Imagen opcional: solo se muestra si el producto tiene la propiedad image */}
-  {plan.image && (
-    <div style="margin: 10px 0; text-align: center;">
-      <img src={plan.image} alt={plan.name} style="max-width: 100%; max-height: 90px; width: auto; height: auto; object-fit: contain; border-radius: 6px; display: inline-block;" />
-    </div>
-  )}
+  {/* Contenedor de la tarjeta que agrupa la imagen de fondo y las características */}
+  <div style="position: relative; width: 100%; margin-top: 10px;">
+    
+    {/* Imagen de fondo detrás de los textos */}
+    {plan.image && (
+      <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 0;">
+        <img src={plan.image} alt={plan.name} style="width: 100%; height: 100%; object-fit: contain; opacity: 0.18; border-radius: 8px;" />
+      </div>
+    )}
 
-  {/* Lista de características: esta etiqueta debe estar fuera de cualquier condicional de imagen para que aparezca en TODAS las tarjetas */}
-  <ul class="cat-features">
-    {plan.features.map((f) => (
-      <li>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        {f}
-      </li>
-    ))}
-  </ul>
+    {/* Lista de características (se dibuja en TODAS las tarjetas y queda flotando sobre la imagen) */}
+    <ul class="cat-features" style="position: relative; z-index: 1;">
+      {plan.features.map((f) => (
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          {f}
+        </li>
+      ))}
+    </ul>
 
-
-
+  </div>
 
 
 
