@@ -32,19 +32,27 @@ const waRecargas = waUrl("Hola! Vengo de su página web y quiero hacer una recar
 
 // Categoría 1: Streaming Principal
 const streamingPlans = [
-  { id: "hbomax", name: "HBO Max", image: "/hbo-foto.png", tag: "Liga Premier en vivo", price: "3.00", initial: "H", iconBg: "linear-gradient(135deg,#7c3aed,#a855f7)", badge: "Oferta", badgeBg: "rgba(168,85,247,0.16)", badgeColor: "#c084fc", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
-  { id: "primevideo", name: "Prime Video", tag: "NBA en vivo", price: "4.00", initial: "P", iconBg: "linear-gradient(135deg,#0ea5e9,#60a5fa)", badge: "", badgeBg: "", badgeColor: "", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
-  { id: "disney", name: "Disney Premium", tag: "ESPN en vivo", price: "5.00", initial: "D", iconBg: "linear-gradient(135deg,#1d4ed8,#38bdf8)", badge: "Popular", badgeBg: "rgba(255,45,120,0.16)", badgeColor: "#ff6fa3", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
-  { id: "netflix", name: "Netflix", tag: "Eventos en vivo", price: "5.00", initial: "N", iconBg: "linear-gradient(135deg,#dc2626,#ff2d78)", badge: "Más vendido", badgeBg: "rgba(34,229,138,0.16)", badgeColor: "#22e58a", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
-  { id: "paramount", name: "Paramount+", tag: "UFC en vivo", price: "3.00", initial: "P", iconBg: "linear-gradient(135deg,#1e3a8a,#3b82f6)", badge: "", badgeBg: "", badgeColor: "", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
+  { id: "netflix", name: "Netflix", tag: "Eventos en vivo", price: "33", initial: "N", iconBg: "linear-gradient(135deg,#dc2626,#ff2d78)", badge: "Más vendido", badgeBg: "rgba(34,229,138,0.16)", badgeColor: "#22e58a", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
+  { id: "disneyplus", name: "Disney+", tag: "Popular", price: "25", initial: "D", iconBg: "linear-gradient(135deg,#1d4ed8,#38bdf8)", badge: "Popular", badgeBg: "rgba(255,45,120,0.16)", badgeColor: "#ff6fa3", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
+  { id: "disneyespn", name: "Disney+ con ESPN", tag: "Deportes y más", price: "35", initial: "D", iconBg: "linear-gradient(135deg,#0ea5e9,#2563eb)", badge: "", badgeBg: "", badgeColor: "", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
+  { id: "primevideo", name: "Prime Video", tag: "NBA en vivo", price: "23", initial: "P", iconBg: "linear-gradient(135deg,#0ea5e9,#60a5fa)", badge: "Oferta", badgeBg: "rgba(168,85,247,0.16)", badgeColor: "#c084fc", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
+  { id: "hbomax", name: "HBO Max", tag: "Liga Premier en vivo", price: "25", initial: "H", iconBg: "linear-gradient(135deg,#7c3aed,#a855f7)", badge: "", badgeBg: "", badgeColor: "", features: ["Pantalla renovable", "1 dispositivo", "1 mes de garantía"] },
+  { id: "flujotv", name: "Flujo TV / Magistv", tag: "IPTV y Canales", price: "25", initial: "F", iconBg: "linear-gradient(135deg,#059669,#34d399)", badge: "", badgeBg: "", badgeColor: "", features: ["Servicio activo", "Acceso completo", "1 mes de garantía"] },
+  { id: "spotify", name: "Spotify", tag: "Música sin límites", price: "33", initial: "S", iconBg: "linear-gradient(135deg,#15803d,#4ade80)", badge: "", badgeBg: "", badgeColor: "", features: ["Cuenta personal/familiar", "1 mes de garantía"] },
+  { id: "otrasapp", name: "Otras App", tag: "Bajo pedido", price: "0", initial: "O", iconBg: "linear-gradient(135deg,#475569,#64748b)", badge: "A pedido", badgeBg: "rgba(100,116,139,0.16)", badgeColor: "#94a3b8", features: ["Consúltanos", "Disponibilidad variada"] },
 ];
 
 // Categoría 2: Planes Especiales / Multimedia y Productos Físicos
 const specialPlans = [
-  { id: "youtube", name: "YouTube Premium", tag: "Incluye YT Music", price: "8.00", initial: "Y", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Descuento", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Servicio renovable", "Incluye YT Music", "1 mes de garantía"] },
-  { id: "prueba", name: "Producto Prueba", tag: "TAG PRUEBA", price: "80.00", initial: "P", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Oferta", badgeBg: "rgba(96,165,250,0.16)", badgeColor: "#60a5fa", features: ["Prueba 1", "Prueba 2", "Prueba 3"] },
+  { id: "tvbox", name: "TVBox Android", tag: "Streaming en tu TV", price: "250", initial: "T", iconBg: "linear-gradient(135deg,#b91c1c,#ef4444)", badge: "Más vendido", badgeBg: "rgba(34,229,138,0.16)", badgeColor: "#22e58a", features: ["Android TV", "Alta velocidad", "Garantía incluida"] },
+  { id: "proyector", name: "Mini Proyector", tag: "Cine en casa", price: "350", initial: "M", iconBg: "linear-gradient(135deg,#7c3aed,#c084fc)", badge: "Popular", badgeBg: "rgba(255,45,120,0.16)", badgeColor: "#ff6fa3", features: ["Portátil", "Alta definición", "Garantía incluida"] },
+  { id: "arosluz", name: "Aros de Luz LED", tag: "Iluminación Pro", price: "120", initial: "A", iconBg: "linear-gradient(135deg,#d97706,#fbbf24)", badge: "Oferta", badgeBg: "rgba(168,85,247,0.16)", badgeColor: "#c084fc", features: ["Trípode incluido", "Luz ajustable", "Garantía incluida"] },
+  { id: "repetidor", name: "Repetidor de Wi-Fi", tag: "Amplía tu señal", price: "130", initial: "R", iconBg: "linear-gradient(135deg,#0284c7,#38bdf8)", badge: "", badgeBg: "", badgeColor: "", features: ["Fácil configuración", "Mayor cobertura", "Garantía incluida"] },
+  { id: "control", name: "Control Remoto Smart", tag: "Universal TV", price: "90", initial: "C", iconBg: "linear-gradient(135deg,#334155,#64748b)", badge: "", badgeBg: "", badgeColor: "", features: ["Compatible con varios", "Práctico", "Garantía incluida"] },
+  { id: "powerbank", name: "Power Bank", tag: "Batería portátil", price: "150", initial: "P", iconBg: "linear-gradient(135deg,#16a34a,#4ade80)", badge: "", badgeBg: "", badgeColor: "", features: ["Carga rápida", "Alta capacidad", "Garantía incluida"] },
+  { id: "audifonos", name: "Audífonos Bluetooth", tag: "Sonido inalámbrico", price: "90", initial: "A", iconBg: "linear-gradient(135deg,#4f46e5,#818cf8)", badge: "", badgeBg: "", badgeColor: "", features: ["Conexión estable", "Cómodos", "Garantía incluida"] },
+  { id: "otrosgadgets", name: "Otros Gadgets", tag: "Bajo pedido", price: "0", initial: "G", iconBg: "linear-gradient(135deg,#475569,#64748b)", badge: "A pedido", badgeBg: "rgba(100,116,139,0.16)", badgeColor: "#94a3b8", features: ["Consúltanos", "Pedidos especiales"] },
 ];
-
 const FIXED_VES_RATE_ENABLED = true;
 const FIXED_VES_RATE = 40;
 
