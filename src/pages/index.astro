@@ -450,8 +450,8 @@ const rotatorLines = [
     });
   });
 
-const CURRENCY_FORMATTERS = {
-    VES: (amount) => `$b ${amount.toLocaleString("es-BO", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+  const CURRENCY_FORMATTERS = {
+    VES: (amount) => `Bs ${amount.toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
     COP: (amount) => `$${amount.toLocaleString("es-CO", { minimumFractionDigits: 0, maximumFractionDigits: 0 })} COP`,
   };
 
