@@ -236,25 +236,21 @@ const rotatorLines = [
                 <span class="cat-badge" style={`background:${plan.badgeBg};color:${plan.badgeColor}`}>{plan.badge}</span>
               )}
 
-{/* Contenedor flexible para poner las características a la izquierda y la imagen a la derecha */}
-<div style="display: flex; align-items: center; gap: 12px; margin: 8px 0;">
-  
-  <ul class="cat-features" style="flex: 1; margin: 0;">
-    {plan.features.map((f) => (
-      <li>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        {f}
-      </li>
-    ))}
-  </ul>
+{/* Imagen flotante a la derecha sin alterar la lista de características */}
+    {plan.image && (
+      <div style="position: absolute; right: 20px; top: 90px; width: 110px; text-align: center;">
+        <img src={plan.image} alt={plan.name} style="width: 100%; max-height: 95px; object-fit: contain; border-radius: 6px; display: block;" />
+      </div>
+    )}
 
-  {plan.image && (
-    <div style="width: 110px; flex-shrink: 0; text-align: center;">
-      <img src={plan.image} alt={plan.name} style="width: 100%; max-height: 95px; object-fit: contain; border-radius: 6px; display: block;" />
-    </div>
-  )}
-
-</div>
+    <ul class="cat-features">
+      {plan.features.map((f) => (
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          {f}
+        </li>
+      ))}
+    </ul>
 
 
 <ul class="cat-features">
